@@ -16,7 +16,7 @@
 |---|---|---|
 | Pollyana Valverde | [@pollyana-valverde](https://github.com/pollyana-valverde) | Login e perfis, regras do Firestore, documentação |
 | Matheus Rosa Alves | [@MatheusRosaAlves](https://github.com/MatheusRosaAlves) | Cadastro de máquinas e QR, histórico da máquina |
-| Vinícius Vieira | _@usuario_ | Abertura de chamado pelo QR, encerramento |
+| Vinícius Vieira | [@vinioff](https://github.com/vinioff) | Abertura de chamado pelo QR, encerramento |
 | Pedro Henrique dos Reis | _@usuario_ | Fila do técnico, assumir chamado com transação |
 
 ## O problema
