@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Manutec" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/azul_aco</item>
+        <item name="colorOnPrimary">@color/branco</item>
+        <item name="colorPrimaryContainer">@color/azul_claro</item>
+        <item name="colorOnPrimaryContainer">@color/azul_escuro</item>
+        <item name="colorSecondary">@color/laranja</item>
+        <item name="colorOnSecondary">@color/grafite</item>
+        <item name="colorSecondaryContainer">@color/laranja_claro</item>
+        <item name="colorOnSecondaryContainer">@color/grafite</item>
+        <item name="colorTertiary">@color/laranja</item>
+        <item name="android:colorBackground">@color/fundo</item>
+        <item name="colorSurface">@color/branco</item>
+        <item name="colorOnSurface">@color/grafite</item>
+        <item name="colorOnSurfaceVariant">@color/cinza_texto</item>
+        <item name="colorOutline">@color/cinza_borda</item>
+        <item name="colorError">@color/vermelho</item>
+        <item name="floatingActionButtonStyle">@style/Widget.Manutec.Fab</item>
+    </style>
+
+    <!-- Toolbar azul com título e ícones brancos -->
+    <style name="ThemeOverlay.Manutec.Toolbar" parent="ThemeOverlay.Material3.Dark.ActionBar">
+        <item name="colorControlNormal">@color/branco</item>
+    </style>
+
+    <style name="Widget.Manutec.Fab" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/laranja</item>
+        <item name="tint">@color/grafite</item>
+    </style>
+
+    <style name="Widget.Manutec.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">14dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="cardBackgroundColor">@color/branco</item>
+    </style>
+
+    <style name="TextAppearance.Manutec.Rotulo" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">@color/cinza_texto</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+    </style>
+
+</resources>

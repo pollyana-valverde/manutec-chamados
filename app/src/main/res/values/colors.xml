@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Manutec: azul aço (indústria) + laranja de segurança -->
+    <color name="azul_aco">#0E3A5B</color>
+    <color name="azul_escuro">#082539</color>
+    <color name="azul_claro">#D6E6F2</color>
+    <color name="laranja">#F28C28</color>
+    <color name="laranja_claro">#FFE2C4</color>
+    <color name="grafite">#1F2A33</color>
+    <color name="cinza_texto">#5B6770</color>
+    <color name="cinza_borda">#D3DAE0</color>
+    <color name="fundo">#F3F5F7</color>
+    <color name="branco">#FFFFFF</color>
+
+    <!-- Prioridades e status -->
+    <color name="prioridade_alta">#C62828</color>
+    <color name="prioridade_media">#E08A00</color>
+    <color name="prioridade_baixa">#2E7D32</color>
+    <color name="status_aberto">#C62828</color>
+    <color name="status_atendimento">#E08A00</color>
+    <color name="status_encerrado">#2E7D32</color>
+    <color name="vermelho">#C62828</color>
+</resources>

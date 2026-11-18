@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manutec</string>
+    <string name="app_subtitulo">Chamados de manutenção · TechInova</string>
+
+    <!-- Login e cadastro -->
+    <string name="login_titulo">Entrar</string>
+    <string name="campo_email">E-mail</string>
+    <string name="campo_senha">Senha</string>
+    <string name="campo_nome">Nome completo</string>
+    <string name="campo_confirmar_senha">Confirmar senha</string>
+    <string name="acao_entrar">Entrar</string>
+    <string name="acao_criar_conta">Criar conta</string>
+    <string name="acao_ja_tenho_conta">Já tenho conta</string>
+    <string name="cadastro_titulo">Criar conta</string>
+    <string name="cadastro_aviso">O perfil (operador ou técnico) é definido pelo responsável depois do cadastro.</string>
+
+    <!-- Aguardando perfil -->
+    <string name="aguardando_titulo">Aguardando liberação</string>
+    <string name="aguardando_mensagem">Sua conta foi criada, mas ainda não tem um perfil. Peça ao responsável para definir você como operador ou técnico.</string>
+    <string name="aguardando_uid">Seu código de usuário: %1$s</string>
+    <string name="acao_verificar_novamente">Verificar novamente</string>
+
+    <!-- Geral -->
+    <string name="acao_sair">Sair</string>
+    <string name="acao_tentar_novamente">Tentar novamente</string>
+    <string name="acao_cancelar">Cancelar</string>
+    <string name="carregando">Carregando…</string>
+    <string name="sair_confirmacao">Deseja sair da sua conta?</string>
+    <string name="ola_usuario">Olá, %1$s</string>
+    <string name="perfil_operador">Operador</string>
+    <string name="perfil_tecnico">Técnico de manutenção</string>
+    <string name="home_operador_titulo">Operador</string>
+    <string name="home_tecnico_titulo">Manutenção</string>
+    <string name="vazio_padrao_titulo">Nada por aqui</string>
+
+    <!-- Validação (NC6) -->
+    <string name="erro_campo_obrigatorio">Preencha este campo.</string>
+    <string name="erro_email_invalido">Digite um e-mail válido, por exemplo nome@empresa.com.</string>
+    <string name="erro_senha_curta">A senha precisa ter pelo menos 6 caracteres.</string>
+    <string name="erro_senhas_diferentes">As senhas não são iguais.</string>
+    <string name="erro_nome_curto">Digite o nome completo.</string>
+
+    <!-- Erros do Firebase -->
+    <string name="erro_login_invalido">E-mail ou senha incorretos.</string>
+    <string name="erro_email_em_uso">Já existe uma conta com este e-mail.</string>
+    <string name="erro_senha_fraca">Senha fraca. Use pelo menos 6 caracteres.</string>
+    <string name="erro_sem_conexao">Sem conexão com a internet. Verifique e tente de novo.</string>
+    <string name="erro_muitas_tentativas">Muitas tentativas. Aguarde um pouco e tente de novo.</string>
+    <string name="erro_sem_permissao">Você não tem permissão para esta ação.</string>
+    <string name="erro_generico">Algo deu errado. Tente de novo.</string>
+    <string name="erro_carregar_perfil">Não foi possível carregar seu perfil.</string>
+</resources>
