@@ -61,6 +61,12 @@ public class DetalheChamadoActivity extends BaseActivity {
         ref = FirebaseFirestore.getInstance().collection("chamados").document(id);
         binding.botaoAssumir.setOnClickListener(v -> assumir());
         binding.botaoEncerrar.setOnClickListener(v -> confirmarEncerrar());
+        binding.botaoHistorico.setOnClickListener(v -> {
+            if (chamado != null) {
+                startActivity(HistoricoMaquinaActivity.intent(this, chamado.maquinaCodigo,
+                        chamado.maquinaNome, chamado.setor));
+            }
+        });
         Validacao.limparErroAoDigitar(binding.campoSolucao);
     }
 

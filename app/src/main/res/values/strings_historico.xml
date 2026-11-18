@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="historico_titulo">Histórico da máquina</string>
+    <string name="historico_vazio_titulo">Nenhum chamado para esta máquina</string>
+    <string name="historico_vazio_mensagem">Os chamados abertos para ela vão aparecer aqui com a duração de cada reparo.</string>
+    <string name="acao_ver_historico">Ver histórico da máquina</string>
+    <string name="rotulo_chamados">Chamados</string>
+    <string name="rotulo_encerrados">Encerrados</string>
+    <string name="rotulo_tempo_medio">Tempo médio de reparo</string>
+    <string name="rotulo_tempo_parado">Tempo total parada</string>
+    <string name="sem_dados">—</string>
+</resources>
