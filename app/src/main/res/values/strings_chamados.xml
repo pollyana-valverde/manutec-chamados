@@ -68,4 +68,16 @@
     <string name="outro_tecnico">outro técnico</string>
     <string name="titulo_nao_foi_possivel">Não foi possível assumir</string>
     <string name="acao_ok">OK</string>
+
+    <!-- Encerrar -->
+    <string name="rotulo_encerrar">Encerrar atendimento</string>
+    <string name="campo_solucao">O que foi feito</string>
+    <string name="campo_solucao_ajuda">Ex.: troca da vedação do cilindro e reaperto das conexões.</string>
+    <string name="acao_encerrar">Encerrar chamado</string>
+    <string name="encerrar_confirmacao">Encerrar o chamado da %1$s? Depois de encerrado ele não pode ser reaberto.</string>
+    <string name="chamado_encerrado">Chamado encerrado.</string>
+    <string name="erro_solucao_curta">Descreva o que foi feito com pelo menos 10 caracteres.</string>
+    <string name="rotulo_solucao">Solução aplicada</string>
+    <string name="linha_encerrado">Encerrado em %1$s</string>
+    <string name="linha_duracao">Duração do reparo: %1$s</string>
 </resources>
