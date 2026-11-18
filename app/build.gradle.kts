@@ -48,5 +48,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
 
+    // Leitura e geração de QR Code (ZXing)
+    implementation(libs.zxing.embedded)
+
     testImplementation(libs.junit)
 }

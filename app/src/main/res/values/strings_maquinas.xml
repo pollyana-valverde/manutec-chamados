@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maquinas_titulo">Máquinas</string>
+    <string name="maquinas_vazio_titulo">Nenhuma máquina cadastrada</string>
+    <string name="maquinas_vazio_mensagem">Toque em + para cadastrar a primeira máquina e gerar o QR dela.</string>
+    <string name="cadastro_maquina_titulo">Nova máquina</string>
+    <string name="campo_codigo_maquina">Código da máquina</string>
+    <string name="campo_codigo_maquina_ajuda">Ex.: INJ-03. Letras, números e hífen.</string>
+    <string name="campo_nome_maquina">Nome</string>
+    <string name="campo_nome_maquina_ajuda">Ex.: Injetora Romi 300 t</string>
+    <string name="campo_setor">Setor</string>
+    <string name="acao_salvar_maquina">Salvar e gerar QR</string>
+    <string name="acao_nova_maquina">Nova máquina</string>
+    <string name="acao_ver_qr">Ver QR</string>
+    <string name="acao_compartilhar_qr">Compartilhar para imprimir</string>
+    <string name="qr_titulo">QR da máquina</string>
+    <string name="qr_instrucao">Imprima e cole este QR na máquina. O operador lê o código para abrir o chamado.</string>
+    <string name="maquina_salva">Máquina %1$s cadastrada.</string>
+    <string name="erro_codigo_invalido">Use de 2 a 20 caracteres: letras, números e hífen.</string>
+    <string name="erro_codigo_existente">Já existe uma máquina com este código.</string>
+    <string name="erro_gerar_qr">Não foi possível gerar o QR.</string>
+    <string name="erro_nome_maquina_curto">Digite pelo menos 3 caracteres.</string>
+    <string name="erro_setor_obrigatorio">Escolha o setor.</string>
+    <string name="maquina_codigo_setor">%1$s · %2$s</string>
+</resources>

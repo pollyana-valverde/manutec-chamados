@@ -27,6 +27,20 @@
         <activity android:name=".ui.AguardandoPerfilActivity" />
         <activity android:name=".ui.OperadorHomeActivity" />
         <activity android:name=".ui.TecnicoHomeActivity" />
+        <activity android:name=".ui.MaquinasActivity" />
+        <activity android:name=".ui.CadastroMaquinaActivity" />
+        <activity android:name=".ui.QrMaquinaActivity" />
+
+        <!-- Compartilhar a imagem do QR para imprimir -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/caminhos_compartilhados" />
+        </provider>
     </application>
 
 </manifest>
