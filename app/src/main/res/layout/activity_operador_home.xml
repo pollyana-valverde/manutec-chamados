@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +11,92 @@
         android:id="@+id/appBar"
         layout="@layout/view_appbar" />
 
-    <include
-        android:id="@+id/estadoVazio"
-        layout="@layout/view_estado_vazio" />
+    <!-- Cartão de ação principal: ler o QR da máquina -->
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Manutec.Card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/azul_aco">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/operador_card_titulo"
+                android:textAppearance="?attr/textAppearanceTitleLarge"
+                android:textColor="@color/branco"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/operador_card_mensagem"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="@color/azul_claro" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botaoLerQr"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="@color/laranja"
+                android:text="@string/acao_ler_qr"
+                android:textColor="@color/grafite"
+                android:textSize="16sp"
+                app:icon="@drawable/ic_qr_scanner"
+                app:iconGravity="textStart"
+                app:iconSize="28dp"
+                app:iconTint="@color/grafite" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botaoDigitarCodigo"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acao_digitar_codigo"
+                android:textColor="@color/branco"
+                app:icon="@drawable/ic_keyboard"
+                app:iconGravity="textStart"
+                app:iconTint="@color/branco" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/meus_chamados"
+        android:textAppearance="@style/TextAppearance.Manutec.Rotulo" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="4dp"
+            android:paddingBottom="16dp" />
+
+        <include
+            android:id="@+id/estadoVazio"
+            layout="@layout/view_estado_vazio"
+            android:visibility="gone" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progresso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
 </LinearLayout>

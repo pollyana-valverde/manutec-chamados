@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- A câmera é usada para ler o QR, mas o app funciona sem ela (código digitado) -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +37,13 @@
         <activity android:name=".ui.MaquinasActivity" />
         <activity android:name=".ui.CadastroMaquinaActivity" />
         <activity android:name=".ui.QrMaquinaActivity" />
+        <activity android:name=".ui.AbrirChamadoActivity" />
+
+        <!-- Tela de leitura do ZXing liberada para girar junto com o celular -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="android:screenOrientation" />
 
         <!-- Compartilhar a imagem do QR para imprimir -->
         <provider

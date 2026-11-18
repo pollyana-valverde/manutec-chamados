@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prioridade_alta">Alta</string>
+    <string name="prioridade_media">Média</string>
+    <string name="prioridade_baixa">Baixa</string>
+    <string name="status_aberto">Aberto</string>
+    <string name="status_em_atendimento">Em atendimento</string>
+    <string name="status_encerrado">Encerrado</string>
+
+    <!-- Home do operador -->
+    <string name="operador_card_titulo">Máquina parou?</string>
+    <string name="operador_card_mensagem">Leia o QR colado na máquina para abrir um chamado para a manutenção.</string>
+    <string name="acao_ler_qr">Ler QR da máquina</string>
+    <string name="acao_digitar_codigo">Digitar o código</string>
+    <string name="meus_chamados">Meus chamados</string>
+    <string name="operador_vazio_titulo">Nenhum chamado aberto por você</string>
+    <string name="operador_vazio_mensagem">Quando uma máquina parar, leia o QR dela para chamar a manutenção.</string>
+    <string name="scan_prompt">Aponte a câmera para o QR da máquina</string>
+    <string name="dialogo_codigo_titulo">Código da máquina</string>
+    <string name="acao_continuar">Continuar</string>
+    <string name="erro_qr_invalido">Este QR não é de uma máquina cadastrada.</string>
+
+    <!-- Abrir chamado -->
+    <string name="abrir_chamado_titulo">Abrir chamado</string>
+    <string name="rotulo_maquina">Máquina</string>
+    <string name="rotulo_prioridade">Prioridade</string>
+    <string name="campo_descricao">Descreva o problema</string>
+    <string name="campo_descricao_ajuda">Ex.: vazamento de óleo no cilindro, máquina parou no meio do ciclo.</string>
+    <string name="acao_abrir_chamado">Abrir chamado</string>
+    <string name="chamado_aberto">Chamado aberto. A manutenção já está vendo.</string>
+    <string name="erro_maquina_nao_encontrada">Máquina %1$s não encontrada. Confira o QR ou fale com a manutenção.</string>
+    <string name="erro_descricao_curta">Descreva com pelo menos 10 caracteres.</string>
+    <string name="erro_prioridade">Escolha a prioridade.</string>
+    <string name="acao_voltar">Voltar</string>
+
+    <!-- Item da lista -->
+    <string name="item_aberto_ha">Aberto %1$s · por %2$s</string>
+    <string name="item_em_atendimento">Com %1$s desde %2$s</string>
+    <string name="item_encerrado">Reparo: %1$s · por %2$s</string>
+</resources>
