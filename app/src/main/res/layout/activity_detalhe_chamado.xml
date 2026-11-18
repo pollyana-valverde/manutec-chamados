@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fundo"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/view_appbar" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/conteudo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:id="@+id/colunaConteudo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Cabeçalho: máquina, prioridade e status -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Manutec.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textoMaquina"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceTitleLarge"
+                            android:textColor="@color/azul_aco"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textoSetor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="@color/cinza_texto" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/etiquetaPrioridade"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_etiqueta"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="3dp"
+                                android:textAppearance="?attr/textAppearanceLabelLarge"
+                                android:textColor="@color/branco"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/etiquetaStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/bg_etiqueta"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="3dp"
+                                android:textAppearance="?attr/textAppearanceLabelLarge"
+                                android:textColor="@color/branco" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/rotulo_problema"
+                    android:textAppearance="@style/TextAppearance.Manutec.Rotulo" />
+
+                <TextView
+                    android:id="@+id/textoDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
+                    android:textColor="@color/grafite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/rotulo_linha_do_tempo"
+                    android:textAppearance="@style/TextAppearance.Manutec.Rotulo" />
+
+                <TextView
+                    android:id="@+id/textoLinhaDoTempo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="4dp"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="@color/grafite" />
+
+                <!-- C4: assumir o chamado -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/botaoAssumir"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/laranja"
+                    android:text="@string/acao_assumir"
+                    android:textColor="@color/grafite"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_build"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/grafite" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressoAcao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:indeterminate="true"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/laranja" />
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progresso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+</LinearLayout>

@@ -38,6 +38,7 @@
         <activity android:name=".ui.CadastroMaquinaActivity" />
         <activity android:name=".ui.QrMaquinaActivity" />
         <activity android:name=".ui.AbrirChamadoActivity" />
+        <activity android:name=".ui.DetalheChamadoActivity" />
 
         <!-- Tela de leitura do ZXing liberada para girar junto com o celular -->
         <activity

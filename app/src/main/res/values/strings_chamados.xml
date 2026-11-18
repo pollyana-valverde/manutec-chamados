@@ -46,4 +46,26 @@
         <item quantity="one">%d chamado aguardando</item>
         <item quantity="other">%d chamados aguardando</item>
     </plurals>
+
+    <!-- Meus atendimentos e detalhe -->
+    <string name="aba_fila">Fila</string>
+    <string name="aba_meus_atendimentos">Meus atendimentos</string>
+    <string name="atendimentos_vazio_titulo">Você não está atendendo nenhum chamado</string>
+    <string name="atendimentos_vazio_mensagem">Assuma um chamado da fila para ele aparecer aqui.</string>
+    <plurals name="atendimentos_contagem">
+        <item quantity="one">%d chamado com você</item>
+        <item quantity="other">%d chamados com você</item>
+    </plurals>
+    <string name="detalhe_titulo">Chamado</string>
+    <string name="rotulo_problema">Problema relatado</string>
+    <string name="rotulo_linha_do_tempo">Linha do tempo</string>
+    <string name="linha_aberto">Aberto em %1$s por %2$s</string>
+    <string name="linha_assumido">Assumido em %1$s por %2$s</string>
+    <string name="acao_assumir">Assumir chamado</string>
+    <string name="chamado_assumido">Chamado assumido. Ele está em Meus atendimentos.</string>
+    <string name="erro_ja_assumido">Este chamado já está em atendimento com %1$s. Nada foi alterado.</string>
+    <string name="erro_chamado_inexistente">Este chamado não existe mais.</string>
+    <string name="outro_tecnico">outro técnico</string>
+    <string name="titulo_nao_foi_possivel">Não foi possível assumir</string>
+    <string name="acao_ok">OK</string>
 </resources>

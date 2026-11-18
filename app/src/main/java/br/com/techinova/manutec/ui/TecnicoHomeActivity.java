@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,8 @@ import br.com.techinova.manutec.util.Sessao;
 
 /**
  * Fila de chamados abertos para o técnico (C3), ordenada por prioridade e depois por
- * horário de abertura. O snapshot listener atualiza a tela sozinho (NC2).
+ * horário de abertura, e a lista "Meus atendimentos" (C4). O snapshot listener
+ * atualiza a tela sozinho (NC2).
  */
 public class TecnicoHomeActivity extends BaseActivity {
 
@@ -61,17 +63,28 @@ public class TecnicoHomeActivity extends BaseActivity {
             getSupportActionBar().setSubtitle(getString(R.string.ola_usuario, Sessao.nome()));
         }
 
-        adapter = new ChamadoAdapter(null);
+        adapter = new ChamadoAdapter(c -> startActivity(DetalheChamadoActivity.intent(this, c.id)));
         binding.lista.setLayoutManager(new LinearLayoutManager(this));
         binding.lista.setAdapter(adapter);
-        binding.estadoVazio.tituloVazio.setText(R.string.fila_vazia_titulo);
-        binding.estadoVazio.mensagemVazio.setText(R.string.fila_vazia_mensagem);
+
+        binding.grupoModo.addOnButtonCheckedListener((grupo, id, marcado) -> {
+            // Só troca a consulta se a tela já estiver escutando (evita disparo na restauração)
+            if (marcado && escuta != null) {
+                escuta.remove();
+                binding.progresso.setVisibility(View.VISIBLE);
+                escutar();
+            }
+        });
+    }
+
+    private boolean modoMeus() {
+        return binding.grupoModo.getCheckedButtonId() == R.id.botaoMeus;
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        escutarFila();
+        escutar();
         relogio.postDelayed(atualizarTempos, ATUALIZAR_TEMPOS_MS);
     }
 
@@ -82,26 +95,36 @@ public class TecnicoHomeActivity extends BaseActivity {
         relogio.removeCallbacks(atualizarTempos);
     }
 
-    private void escutarFila() {
-        escuta = FirebaseFirestore.getInstance().collection("chamados")
-                .whereEqualTo("status", StatusChamado.ABERTO.valor)
-                .addSnapshotListener((snap, erro) -> {
-                    binding.progresso.setVisibility(View.GONE);
-                    if (erro != null) {
-                        Snackbar.make(binding.getRoot(), MensagensErro.de(this, erro), Snackbar.LENGTH_LONG).show();
-                        return;
-                    }
-                    List<Chamado> chamados = new ArrayList<>();
-                    if (snap != null) {
-                        for (DocumentSnapshot doc : snap.getDocuments()) chamados.add(Chamado.de(doc));
-                    }
-                    // Ordenação no app: dispensa índice composto no Firestore
-                    chamados.sort(OrdenacaoChamados.FILA);
-                    adapter.submitList(chamados);
-                    binding.textoContagem.setText(getResources()
-                            .getQuantityString(R.plurals.fila_contagem, chamados.size(), chamados.size()));
-                    binding.estadoVazio.getRoot().setVisibility(chamados.isEmpty() ? View.VISIBLE : View.GONE);
-                });
+    private void escutar() {
+        final boolean meus = modoMeus();
+        binding.estadoVazio.tituloVazio.setText(meus ? R.string.atendimentos_vazio_titulo : R.string.fila_vazia_titulo);
+        binding.estadoVazio.mensagemVazio.setText(meus ? R.string.atendimentos_vazio_mensagem : R.string.fila_vazia_mensagem);
+
+        Query consulta = FirebaseFirestore.getInstance().collection("chamados");
+        if (meus) {
+            consulta = consulta.whereEqualTo("status", StatusChamado.EM_ATENDIMENTO.valor)
+                    .whereEqualTo("tecnicoUid", Sessao.uid());
+        } else {
+            consulta = consulta.whereEqualTo("status", StatusChamado.ABERTO.valor);
+        }
+        escuta = consulta.addSnapshotListener((snap, erro) -> {
+            binding.progresso.setVisibility(View.GONE);
+            if (erro != null) {
+                Snackbar.make(binding.getRoot(), MensagensErro.de(this, erro), Snackbar.LENGTH_LONG).show();
+                return;
+            }
+            List<Chamado> chamados = new ArrayList<>();
+            if (snap != null) {
+                for (DocumentSnapshot doc : snap.getDocuments()) chamados.add(Chamado.de(doc));
+            }
+            // Ordenação no app: dispensa índice composto no Firestore
+            chamados.sort(OrdenacaoChamados.FILA);
+            adapter.submitList(chamados);
+            binding.textoContagem.setText(getResources().getQuantityString(
+                    meus ? R.plurals.atendimentos_contagem : R.plurals.fila_contagem,
+                    chamados.size(), chamados.size()));
+            binding.estadoVazio.getRoot().setVisibility(chamados.isEmpty() ? View.VISIBLE : View.GONE);
+        });
     }
 
     @Override
