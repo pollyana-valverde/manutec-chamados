@@ -37,4 +37,13 @@
     <string name="item_aberto_ha">Aberto %1$s · por %2$s</string>
     <string name="item_em_atendimento">Com %1$s desde %2$s</string>
     <string name="item_encerrado">Reparo: %1$s · por %2$s</string>
+
+    <!-- Fila do técnico -->
+    <string name="fila_titulo">Fila de chamados</string>
+    <string name="fila_vazia_titulo">Nenhum chamado aberto</string>
+    <string name="fila_vazia_mensagem">Quando um operador abrir um chamado, ele aparece aqui na hora.</string>
+    <plurals name="fila_contagem">
+        <item quantity="one">%d chamado aguardando</item>
+        <item quantity="other">%d chamados aguardando</item>
+    </plurals>
 </resources>
