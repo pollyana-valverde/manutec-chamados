@@ -15,9 +15,9 @@
 | Nome | GitHub | Responsabilidade principal |
 |---|---|---|
 | Pollyana Valverde | [@pollyana-valverde](https://github.com/pollyana-valverde) | Login e perfis, regras do Firestore, documentação |
-| _Integrante 2_ | _@usuario_ | Cadastro de máquinas e QR, histórico da máquina |
-| _Integrante 3_ | _@usuario_ | Abertura de chamado pelo QR, encerramento |
-| _Integrante 4_ | _@usuario_ | Fila do técnico, assumir chamado com transação |
+| Matheus Rosa Alves | _@usuario_ | Cadastro de máquinas e QR, histórico da máquina |
+| Vinícius Vieira | _@usuario_ | Abertura de chamado pelo QR, encerramento |
+| Pedro Henrique dos Reis | _@usuario_ | Fila do técnico, assumir chamado com transação |
 
 ## O problema
 

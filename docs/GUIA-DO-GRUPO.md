@@ -8,15 +8,15 @@ Cada integrante abre **pelo menos 2 PRs** e revisa **pelo menos 2 PRs de colegas
 
 | Issue | História / tarefa | Branch | Abre o PR | Revisa |
 |---|---|---|---|---|
-| #1 | Login, cadastro e perfis (NC1, NC4, NC6, NC7) | `feature/1-login-perfis` | Pollyana | Integrante 4 |
-| #2 | C1 – Cadastro de máquinas com QR | `feature/2-cadastro-maquinas` | Integrante 2 | Pollyana |
-| #3 | C2 – Abrir chamado pelo QR | `feature/3-abrir-chamado-qr` | Integrante 3 | Integrante 2 |
-| #4 | C3 – Fila do técnico em tempo real | `feature/4-fila-tecnico` | Integrante 4 | Integrante 3 |
-| #5 | C4 – Assumir chamado com transação | `feature/5-assumir-chamado` | Integrante 4 | Pollyana |
-| #6 | C5 – Encerrar chamado com a solução | `feature/6-encerrar-chamado` | Integrante 3 | Integrante 4 |
-| #7 | C6 – Histórico da máquina | `feature/7-historico-maquina` | Integrante 2 | Integrante 3 |
-| #8 | Regras de segurança do Firestore (NC3) | `feature/8-regras-firestore` | Pollyana | Integrante 2 |
-| #9 | README, prints e documentos da entrega (NC8) | `docs/9-readme-entrega` | Pollyana | Integrante 4 |
+| #1 | Login, cadastro e perfis (NC1, NC4, NC6, NC7) | `feature/1-login-perfis` | Pollyana | Pedro Henrique dos Reis |
+| #2 | C1 – Cadastro de máquinas com QR | `feature/2-cadastro-maquinas` | Matheus Rosa Alves | Pollyana |
+| #3 | C2 – Abrir chamado pelo QR | `feature/3-abrir-chamado-qr` | Vinícius Vieira | Matheus Rosa Alves |
+| #4 | C3 – Fila do técnico em tempo real | `feature/4-fila-tecnico` | Pedro Henrique dos Reis | Vinícius Vieira |
+| #5 | C4 – Assumir chamado com transação | `feature/5-assumir-chamado` | Pedro Henrique dos Reis | Pollyana |
+| #6 | C5 – Encerrar chamado com a solução | `feature/6-encerrar-chamado` | Vinícius Vieira | Pedro Henrique dos Reis |
+| #7 | C6 – Histórico da máquina | `feature/7-historico-maquina` | Matheus Rosa Alves | Vinícius Vieira |
+| #8 | Regras de segurança do Firestore (NC3) | `feature/8-regras-firestore` | Pollyana | Matheus Rosa Alves |
+| #9 | README, prints e documentos da entrega (NC8) | `docs/9-readme-entrega` | Pollyana | Pedro Henrique dos Reis |
 
 Na apresentação, cada um fala pelo menos um bloco (veja [`roteiro-apresentacao.md`](roteiro-apresentacao.md)).
 **Qualquer integrante pode ser chamado para explicar qualquer trecho do código**, então todos precisam ler o código das 9 branches, não só o das próprias.

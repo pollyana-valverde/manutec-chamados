@@ -17,10 +17,10 @@ Tempo total: **15 minutos** (≈12 de apresentação + 3 de perguntas). A demons
 | Bloco | Tempo | Quem fala | O que mostrar |
 |---|---|---|---|
 | O problema | 2 min | Pollyana | Slide 2: máquina parada, telefone, caderno. Pergunta: "quantas vezes a injetora 3 quebrou este mês?" |
-| A solução | 1 min | Integrante 2 | Slide 3: dois perfis, o que cada um faz. |
-| Demonstração | 5 min | Integrante 3 (operador) e Integrante 4 (técnico) | Roteiro abaixo, sem pular passo. |
-| Por dentro | 5 min | Pollyana (Firestore e regras) e Integrante 2 (GitHub) | Coleções no console, regra barrando, quadro do Projects e um PR revisado. |
-| Próximos passos | 2 min | Integrante 3 | Slide 6: o que ficou de fora e uma limitação honesta. |
+| A solução | 1 min | Matheus Rosa Alves | Slide 3: dois perfis, o que cada um faz. |
+| Demonstração | 5 min | Vinícius Vieira (operador) e Pedro Henrique dos Reis (técnico) | Roteiro abaixo, sem pular passo. |
+| Por dentro | 5 min | Pollyana (Firestore e regras) e Matheus Rosa Alves (GitHub) | Coleções no console, regra barrando, quadro do Projects e um PR revisado. |
+| Próximos passos | 2 min | Vinícius Vieira | Slide 6: o que ficou de fora e uma limitação honesta. |
 | Perguntas | 3 min | todos | — |
 
 ## Demonstração (roteiro mínimo do projeto 01)
