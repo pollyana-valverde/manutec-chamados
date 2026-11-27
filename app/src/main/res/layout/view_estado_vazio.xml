@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tela de estado vazio (NC5): aparece no lugar da lista quando não há dados -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/iconeVazio"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_inbox"
+        app:tint="@color/cinza_borda" />
+
+    <TextView
+        android:id="@+id/tituloVazio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/vazio_padrao_titulo"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="@color/grafite" />
+
+    <TextView
+        android:id="@+id/mensagemVazio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="@color/cinza_texto" />
+
+</LinearLayout>
