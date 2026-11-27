@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setores">
+        <item>Injeção plástica</item>
+        <item>Estamparia</item>
+        <item>Usinagem</item>
+        <item>Soldagem</item>
+        <item>Pintura</item>
+        <item>Montagem</item>
+        <item>Utilidades</item>
+    </string-array>
+</resources>
