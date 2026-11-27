@@ -28,8 +28,9 @@ import br.com.techinova.manutec.model.StatusChamado;
 import br.com.techinova.manutec.util.Formatos;
 import br.com.techinova.manutec.util.MensagensErro;
 import br.com.techinova.manutec.util.Sessao;
+import br.com.techinova.manutec.util.Validacao;
 
-/** Detalhe do chamado para o técnico: assumir (C4). */
+/** Detalhe do chamado para o técnico: assumir (C4) e encerrar com a solução (C5). */
 public class DetalheChamadoActivity extends BaseActivity {
 
     private static final String EXTRA_ID = "chamadoId";
@@ -59,6 +60,8 @@ public class DetalheChamadoActivity extends BaseActivity {
         }
         ref = FirebaseFirestore.getInstance().collection("chamados").document(id);
         binding.botaoAssumir.setOnClickListener(v -> assumir());
+        binding.botaoEncerrar.setOnClickListener(v -> confirmarEncerrar());
+        Validacao.limparErroAoDigitar(binding.campoSolucao);
     }
 
     @Override
@@ -102,6 +105,12 @@ public class DetalheChamadoActivity extends BaseActivity {
 
         binding.textoLinhaDoTempo.setText(linhaDoTempo(c));
         binding.botaoAssumir.setVisibility(c.status == StatusChamado.ABERTO ? View.VISIBLE : View.GONE);
+
+        boolean souEu = c.tecnicoUid != null && c.tecnicoUid.equals(Sessao.uid());
+        binding.painelEncerrar.setVisibility(
+                c.status == StatusChamado.EM_ATENDIMENTO && souEu ? View.VISIBLE : View.GONE);
+        binding.painelSolucao.setVisibility(c.status == StatusChamado.ENCERRADO ? View.VISIBLE : View.GONE);
+        binding.textoSolucao.setText(c.solucao);
     }
 
     @NonNull
@@ -111,6 +120,10 @@ public class DetalheChamadoActivity extends BaseActivity {
         if (c.status != StatusChamado.ABERTO) {
             sb.append("\n• ").append(getString(R.string.linha_assumido,
                     Formatos.dataHora(c.assumidoEm), c.tecnicoNome));
+        }
+        if (c.status == StatusChamado.ENCERRADO) {
+            sb.append("\n• ").append(getString(R.string.linha_encerrado, Formatos.dataHora(c.fechadoEm)));
+            sb.append("\n• ").append(getString(R.string.linha_duracao, Formatos.duracao(c.duracaoMs())));
         }
         return sb.toString();
     }
@@ -160,8 +173,38 @@ public class DetalheChamadoActivity extends BaseActivity {
                 });
     }
 
+    private void confirmarEncerrar() {
+        if (chamado == null) return;
+        if (!Validacao.minimo(binding.campoSolucao, 10, R.string.erro_solucao_curta)) return;
+        new MaterialAlertDialogBuilder(this)
+                .setMessage(getString(R.string.encerrar_confirmacao, chamado.maquinaCodigo))
+                .setNegativeButton(R.string.acao_cancelar, null)
+                .setPositiveButton(R.string.acao_encerrar, (d, w) -> encerrar())
+                .show();
+    }
+
+    /** C5: grava a solução e a data de fechamento (horário do servidor). */
+    private void encerrar() {
+        Map<String, Object> mudancas = new HashMap<>();
+        mudancas.put("status", StatusChamado.ENCERRADO.valor);
+        mudancas.put("solucao", Validacao.texto(binding.campoSolucao));
+        mudancas.put("fechadoEm", FieldValue.serverTimestamp());
+
+        acao(true);
+        ref.update(mudancas)
+                .addOnSuccessListener(nada -> {
+                    acao(false);
+                    Snackbar.make(binding.getRoot(), R.string.chamado_encerrado, Snackbar.LENGTH_LONG).show();
+                })
+                .addOnFailureListener(e -> {
+                    acao(false);
+                    Snackbar.make(binding.getRoot(), MensagensErro.de(this, e), Snackbar.LENGTH_LONG).show();
+                });
+    }
+
     protected void acao(boolean emAndamento) {
         binding.progressoAcao.setVisibility(emAndamento ? View.VISIBLE : View.INVISIBLE);
         binding.botaoAssumir.setEnabled(!emAndamento);
+        binding.botaoEncerrar.setEnabled(!emAndamento);
     }
 }

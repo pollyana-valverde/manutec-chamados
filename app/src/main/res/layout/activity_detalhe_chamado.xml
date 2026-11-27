@@ -117,6 +117,77 @@
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="@color/grafite" />
 
+                <!-- C5: solução registrada (chamado encerrado) -->
+                <LinearLayout
+                    android:id="@+id/painelSolucao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/rotulo_solucao"
+                        android:textAppearance="@style/TextAppearance.Manutec.Rotulo" />
+
+                    <TextView
+                        android:id="@+id/textoSolucao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:textColor="@color/grafite" />
+                </LinearLayout>
+
+                <!-- C5: encerrar (só para o técnico que assumiu) -->
+                <LinearLayout
+                    android:id="@+id/painelEncerrar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:text="@string/rotulo_encerrar"
+                        android:textAppearance="@style/TextAppearance.Manutec.Rotulo" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/campoSolucao"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:hint="@string/campo_solucao"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="500"
+                        app:helperText="@string/campo_solucao_ajuda">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editSolucao"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLength="500"
+                            android:minLines="3" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/botaoEncerrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="12dp"
+                        android:backgroundTint="@color/status_encerrado"
+                        android:text="@string/acao_encerrar"
+                        app:icon="@drawable/ic_check"
+                        app:iconGravity="textStart" />
+                </LinearLayout>
+
                 <!-- C4: assumir o chamado -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/botaoAssumir"
