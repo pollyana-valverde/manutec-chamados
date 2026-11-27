@@ -1,0 +1,136 @@
+rules_version = '2';
+
+// Regras de segurança do Manutec (NC3).
+// O perfil de cada usuário fica em usuarios/{uid}.perfil e é definido pelo grupo
+// no console (NC4). O app nunca consegue gravar ou trocar o próprio perfil.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Funções auxiliares ----------
+
+    function logado() {
+      return request.auth != null;
+    }
+
+    function docUsuario() {
+      return /databases/$(database)/documents/usuarios/$(request.auth.uid);
+    }
+
+    function ehPerfil(p) {
+      return logado()
+        && exists(docUsuario())
+        && get(docUsuario()).data.get('perfil', '') == p;
+    }
+
+    function ehTecnico() {
+      return ehPerfil('tecnico');
+    }
+
+    function ehOperador() {
+      return ehPerfil('operador');
+    }
+
+    function temPerfil() {
+      return ehTecnico() || ehOperador();
+    }
+
+    function textoEntre(valor, minimo, maximo) {
+      return valor is string && valor.size() >= minimo && valor.size() <= maximo;
+    }
+
+    // ---------- usuarios/{uid} ----------
+    match /usuarios/{uid} {
+      // Cada um lê o próprio documento; o técnico pode ler todos
+      allow read: if logado() && (request.auth.uid == uid || ehTecnico());
+
+      // No cadastro o app cria o documento SEM o campo perfil
+      allow create: if logado()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['nome', 'email', 'criadoEm'])
+        && textoEntre(request.resource.data.nome, 3, 60);
+
+      // Pode trocar o nome, nunca o perfil
+      allow update: if logado()
+        && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome'])
+        && textoEntre(request.resource.data.nome, 3, 60);
+
+      allow delete: if false;
+    }
+
+    // ---------- maquinas/{codigo} (C1) ----------
+    match /maquinas/{codigo} {
+      allow read: if temPerfil();
+      allow create, update: if ehTecnico() && maquinaValida(codigo);
+      allow delete: if false;
+
+      function maquinaValida(codigo) {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['codigo', 'nome', 'setor', 'criadoEm'])
+          && d.keys().hasAll(['codigo', 'nome', 'setor'])
+          && d.codigo == codigo
+          && codigo.matches('[A-Z0-9][A-Z0-9-]{1,19}')
+          && textoEntre(d.nome, 3, 60)
+          && textoEntre(d.setor, 1, 40);
+      }
+    }
+
+    // ---------- chamados/{id} (C2 a C6) ----------
+    match /chamados/{id} {
+      // Técnico vê todos; operador vê só os que ele abriu
+      allow read: if ehTecnico()
+        || (ehOperador() && resource.data.abertoPorUid == request.auth.uid);
+
+      // C2: só operador abre chamado, sempre como "aberto", em nome dele e para máquina existente
+      allow create: if ehOperador() && chamadoNovoValido();
+
+      // C4 e C5: só técnico muda o chamado, e só nestas duas transições
+      allow update: if ehTecnico() && (assumindo() || encerrando());
+
+      allow delete: if false;
+
+      function chamadoNovoValido() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['maquinaCodigo', 'maquinaNome', 'setor', 'descricao', 'prioridade',
+                                 'prioridadeOrdem', 'status', 'abertoPorUid', 'abertoPorNome', 'abertoEm'])
+          && d.keys().hasAll(['maquinaCodigo', 'descricao', 'prioridade', 'prioridadeOrdem',
+                              'status', 'abertoPorUid', 'abertoEm'])
+          && d.abertoPorUid == request.auth.uid
+          && d.status == 'aberto'
+          && d.abertoEm == request.time
+          && d.maquinaCodigo is string
+          && exists(/databases/$(database)/documents/maquinas/$(d.maquinaCodigo))
+          && textoEntre(d.descricao, 10, 500)
+          && ((d.prioridade == 'alta' && d.prioridadeOrdem == 1)
+            || (d.prioridade == 'media' && d.prioridadeOrdem == 2)
+            || (d.prioridade == 'baixa' && d.prioridadeOrdem == 3));
+      }
+
+      // C4: aberto -> em_atendimento, gravando o próprio técnico. Mesmo sem a transação
+      // do app, a regra recusa assumir um chamado que não está mais "aberto".
+      function assumindo() {
+        let novo = request.resource.data;
+        return resource.data.status == 'aberto'
+          && novo.status == 'em_atendimento'
+          && novo.tecnicoUid == request.auth.uid
+          && textoEntre(novo.tecnicoNome, 1, 60)
+          && novo.assumidoEm == request.time
+          && novo.diff(resource.data).affectedKeys()
+               .hasOnly(['status', 'tecnicoUid', 'tecnicoNome', 'assumidoEm']);
+      }
+
+      // C5: em_atendimento -> encerrado, só pelo técnico que assumiu
+      function encerrando() {
+        let novo = request.resource.data;
+        return resource.data.status == 'em_atendimento'
+          && resource.data.tecnicoUid == request.auth.uid
+          && novo.status == 'encerrado'
+          && novo.fechadoEm == request.time
+          && textoEntre(novo.solucao, 10, 500)
+          && novo.diff(resource.data).affectedKeys().hasOnly(['status', 'solucao', 'fechadoEm']);
+      }
+    }
+
+    // Qualquer outro caminho: negado
+  }
+}
