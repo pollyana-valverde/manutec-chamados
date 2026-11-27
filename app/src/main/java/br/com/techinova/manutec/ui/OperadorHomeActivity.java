@@ -19,7 +19,6 @@ import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.techinova.manutec.R;
@@ -27,6 +26,7 @@ import br.com.techinova.manutec.databinding.ActivityOperadorHomeBinding;
 import br.com.techinova.manutec.databinding.DialogoCodigoBinding;
 import br.com.techinova.manutec.model.Chamado;
 import br.com.techinova.manutec.model.Maquina;
+import br.com.techinova.manutec.model.OrdenacaoChamados;
 import br.com.techinova.manutec.ui.adapter.ChamadoAdapter;
 import br.com.techinova.manutec.util.MensagensErro;
 import br.com.techinova.manutec.util.Sessao;
@@ -89,8 +89,7 @@ public class OperadorHomeActivity extends BaseActivity {
                     if (snap != null) {
                         for (DocumentSnapshot doc : snap.getDocuments()) chamados.add(Chamado.de(doc));
                     }
-                    // Mais recentes primeiro
-                    chamados.sort((a, b) -> data(b.abertoEm).compareTo(data(a.abertoEm)));
+                    chamados.sort(OrdenacaoChamados.RECENTES);
                     adapter.submitList(chamados);
                     binding.estadoVazio.getRoot().setVisibility(chamados.isEmpty() ? View.VISIBLE : View.GONE);
                 });
@@ -100,10 +99,6 @@ public class OperadorHomeActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         if (escuta != null) escuta.remove();
-    }
-
-    private static Date data(@Nullable Date d) {
-        return d == null ? new Date(0) : d;
     }
 
     private void lerQr() {
