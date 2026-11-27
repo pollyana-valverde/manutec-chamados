@@ -22,7 +22,10 @@ import br.com.techinova.manutec.model.Maquina;
 import br.com.techinova.manutec.ui.adapter.MaquinaAdapter;
 import br.com.techinova.manutec.util.MensagensErro;
 
-/** Lista de máquinas cadastradas (C1), atualizada em tempo real (NC2). */
+/**
+ * Lista de máquinas cadastradas (C1), atualizada em tempo real (NC2). Tocar na máquina
+ * abre o histórico dela (C6); o botão ao lado mostra o QR.
+ */
 public class MaquinasActivity extends BaseActivity implements MaquinaAdapter.Acoes {
 
     private ActivityMaquinasBinding binding;
@@ -76,7 +79,7 @@ public class MaquinasActivity extends BaseActivity implements MaquinaAdapter.Aco
 
     @Override
     public void aoClicar(@NonNull Maquina maquina) {
-        aoVerQr(maquina);
+        startActivity(HistoricoMaquinaActivity.intent(this, maquina.codigo, maquina.nome, maquina.setor));
     }
 
     @Override
