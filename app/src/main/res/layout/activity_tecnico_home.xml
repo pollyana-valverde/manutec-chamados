@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +10,34 @@
     <include
         android:id="@+id/appBar"
         layout="@layout/view_appbar" />
+
+    <!-- Alterna entre a fila geral e os chamados que este técnico assumiu -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/grupoModo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        app:checkedButton="@+id/botaoFila"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botaoFila"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/aba_fila" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botaoMeus"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/aba_meus_atendimentos" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
     <TextView
         android:id="@+id/textoContagem"
